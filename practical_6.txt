@@ -1,0 +1,125 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. Write a program to define a class called book. Write a program to read information about 10 books and display books details in ascending order of price in proper format.
+
+#include<iostream>
+using namespace std;
+
+class Book {
+    string name;
+    string author;
+    float price;
+
+public:
+    friend void inputBooks(Book books[], int n);
+    friend void sortBooksByPrice(Book books[], int n);
+    friend void displayBooks(Book books[], int n);
+};
+
+void inputBooks(Book books[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "Enter details for book " << i + 1 << ":\n";
+        cout << "Enter book name: ";
+        cin.ignore();
+        getline(cin, books[i].name);
+        cout << "Enter author name: ";
+        getline(cin, books[i].author);
+        cout << "Enter price: ";
+        cin >> books[i].price;
+    }
+}
+
+void sortBooksByPrice(Book books[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (books[j].price > books[j+1].price) {
+                Book temp = books[j];
+                books[j] = books[j+1];
+                books[j+1] = temp;
+            }
+        }
+    }
+}
+
+void displayBooks(Book books[], int n) {
+    cout << "\nBooks sorted by price (ascending order):\n";
+    cout << "Name\tAuthor\tPrice\n";
+    for (int i = 0; i < n; i++) {
+        cout << books[i].name << "\t" << books[i].author << "\t" << books[i].price << endl;
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of books: ";
+    cin >> n;
+    Book books[n];
+    inputBooks(books, n);
+    sortBooksByPrice(books, n);
+    displayBooks(books, n);
+
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+
+Enter details for book 1:
+Enter book title: c++
+Enter book author: jhon
+Enter book price: 1200
+Enter details for book 2:
+Enter book title: java
+Enter book author: ram
+Enter book price: 800
+Enter details for book 3:
+Enter book title: python
+Enter book author: smith
+Enter book price: 1250
+Enter details for book 4:
+Enter book title: accounts
+Enter book author: yash
+Enter book price: 500
+Enter details for book 5:
+Enter book title: ansi c++
+Enter book author: bhushan
+Enter book price: 1700
+Enter details for book 6:
+Enter book title: mathematices
+Enter book author: devid
+Enter book price: 800
+Enter details for book 7:
+Enter book title: chemestry
+Enter book author: eric
+Enter book price: 1000
+Enter details for book 8:
+Enter book title: physic
+Enter book author: A.B.
+Enter book price: 1300
+Enter details for book 9:
+Enter book title: asembly
+Enter book author: nitish
+Enter book price: 1400
+Enter details for book 10:
+Enter book title: O.S       
+Enter book author: rohit
+Enter book price: 2000
+
+sorted array:
+title           author  price
+accounts        yash    500
+java            ram     800
+mathematices    devid   800
+chemestry       eric    1000
+c++             jhon    1200
+python  	smith   1250
+physic  	A.B.    1300
+asembly 	nitish  1400
+ansi c++        bhushan 1700
+O.S     	rohit   2000

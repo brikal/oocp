@@ -1,0 +1,62 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Write a program to create class Time (int h, int m). Read a value as minutes from user to display new time after adding the value to minutes in Time.
+
+#include <iostream>
+using namespace std;
+
+class Time {
+
+    int hours;
+    int minutes;
+
+public:
+    Time(int h, int m) {
+        hours = h;
+        minutes = m;
+    }
+    void addMinutes(int extraMinutes) {
+        minutes += extraMinutes;           // Add the extra minutes
+        hours += minutes / 60;             // Convert excess minutes to hours
+        minutes = minutes % 60;            // Remaining minutes after converting to hours
+        hours = hours % 24;                // Keep hours within 24 (for a 24-hour format)
+    }
+
+    void display() {
+        cout << "Updated Time: " << hours << " hour(s) and " << minutes << " minute(s)." << endl;
+    }
+};
+
+int main() {
+    int h, m, extraMinutes;
+
+    cout << "Enter hours: ";
+    cin >> h;
+    cout << "Enter minutes: ";
+    cin >> m;
+    Time time(h, m);
+    if(h > 23 || h < 0 || m < 0 || m > 60){
+        cout<<"enter valid hour and minute:";
+        exit(0);
+    }
+
+    cout << "Enter minutes to add: ";
+    cin >> extraMinutes;
+
+    time.addMinutes(extraMinutes);
+    time.display();
+
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+Enter hours: 5
+Enter minutes: 30
+Enter minutes to add: 120
+Updated Time: 7 hour(s) and 30 minute(s).

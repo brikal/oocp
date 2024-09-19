@@ -1,0 +1,112 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Write a program to create class Student with student’s rollno, name and marks of three subjects (OOCP, AI and MF) and display the details of student with total marks of all subjects along with the percentage in proper format.(Output should be in descending order of percentage.
+
+#include <iostream>
+using namespace std;
+
+class Student {
+
+    int rollNo;
+    string name;
+    float oocpMarks, aiMarks, mfMarks;
+    float totalMarks;
+public:
+    float percentage;
+    Student(int r = 0, string n = "", float oocp = 0, float ai = 0, float mf = 0) {
+        rollNo = r;
+        name = n;
+        oocpMarks = oocp;
+        aiMarks = ai;
+        mfMarks = mf;
+        totalMarks = oocpMarks + aiMarks + mfMarks;
+        percentage = (totalMarks / 300) * 100; 
+    }
+    void display() const {
+        cout<<rollNo<<"\t"<<name<<"\t"<<oocpMarks<<"\t\t"<<aiMarks<<"\t\t"<<mfMarks<<"\t\t"<<totalMarks<<"\t\t"<<percentage<<"\n";
+    }
+};
+int main() {
+    int n;
+    cout << "Enter the number of students: ";
+    cin >> n;
+
+    Student students[n];
+    for (int i = 0; i < n; i++) {
+        int rollNo;
+        string name;
+        float oocp, ai, mf;
+
+        cout << "\nEnter details for student " << i + 1 << ":\n";
+        cout << "Roll No: ";
+        cin >> rollNo;
+        cout << "Name: ";
+        cin.ignore();
+        getline(cin, name);
+        cout << "Marks in OOCP: ";
+        cin >> oocp;
+        cout << "Marks in AI: ";
+        cin >> ai;
+        cout << "Marks in MF: ";
+        cin >> mf;
+        if(oocp < 0 || oocp > 100 || ai < 0 || ai > 100 || mf < 0|| mf > 100){
+            printf("enter valid marks");
+            exit(0);
+        }
+        students[i] = Student(rollNo, name, oocp, ai, mf);
+    }
+    int flag=0;
+    Student temp;
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-i-1;j++){
+            if(students[j].percentage < students[j+1].percentage){
+                flag=1;
+            temp = students[j];
+            students[j] = students[j+1];
+            students[j+1] = temp;
+            }
+        }
+        if(flag==0){
+            break;
+        }
+    }
+    cout << "\nStudent details in descending order of percentage:\n";
+    cout<<"roll no\t name\t oocp marks\t ai marks\t mf marks\t total marks\t percentage\n";
+    for (int i = 0; i < n; i++) {
+        students[i].display();
+    }
+
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+Enter the number of students: 3
+Enter details for student 1:
+Roll No: 1
+Name: fenil
+Marks in OOCP: 56
+Marks in AI: 76
+Marks in MF: 86
+Enter details for student 2:
+Roll No: 2
+Name: yash
+Marks in OOCP: 78
+Marks in AI: 68
+Marks in MF: 97
+Enter details for student 3:
+Roll No: 3
+Name: raj
+Marks in OOCP: 78
+Marks in AI: 79
+Marks in MF: 69
+Student details in descending order of percentage:
+roll no  name    oocp marks      ai marks        mf marks        total marks     percentage
+2       yash    78              68              97              243             81
+3       raj     78              79              69              226             75.3333
+1       fenil   56              76              86              218             72.6667

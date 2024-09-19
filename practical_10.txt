@@ -1,0 +1,131 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10. Write a program to create class ‘Search’ having data members (int a[ ], x) and define member functions as void input(), void output(), void search(int position), void add(int value) to display result.
+
+#include <iostream>
+using namespace std;
+
+class Search {
+private:
+    static const int MAX_SIZE = 20; 
+    int a[MAX_SIZE]; 
+    int size;                  
+
+public:
+    Search() : size(0) {}
+    void input() {
+        cout << "Enter the number of elements (up to " << MAX_SIZE << "): ";
+        cin >> size;
+        if (size > MAX_SIZE) {
+            cout << "Size exceeds maximum limit. Setting size to " << MAX_SIZE << ".\n";
+            size = MAX_SIZE;
+        }
+        cout << "Enter " << size << " elements:\n";
+        for (int i = 0; i < size; ++i) {
+            cin >> a[i];
+        }
+    }
+
+    void output() const {
+        cout << "Array contents:\n";
+        for (int i = 0; i < size; ++i) {
+            cout << a[i] << " ";
+        }
+        cout << endl;
+    }
+
+    void search(int position) const {
+        if (position >= 0 && position < size) {
+            cout << "Element at position " << position << " is " << a[position] << endl;
+        } else {
+            cout << "Position out of range.\n";
+        }
+    }
+
+    void add(int value) {
+        if (size < MAX_SIZE) {
+            a[size++] = value;
+            cout << "Value " << value << " added to the array.\n";
+        } else {
+            cout << "Array is full. Cannot add more elements.\n";
+        }
+    }
+};
+
+int main() {
+    int choice;
+    Search searchObj;
+    searchObj.input();
+    searchObj.output();
+    while(true){
+        cout<<"\n1.to search an elemnt.\n2.to add new element in array.\n3 exit\nenter your choice: ";
+        cin>>choice;
+        switch (choice)
+        {
+        case 1:
+            int position;
+            cout << "Enter position to search: ";
+            cin >> position;
+            searchObj.search(position);
+            break;
+        case 2:
+            int valueToAdd;
+            cout << "Enter value to add to the array: ";
+            cin >> valueToAdd;
+            searchObj.add(valueToAdd);
+            searchObj.output();
+            break;
+        case 3:
+            exit(0);
+        default:
+            cout<<"enter valid choice:";
+            break;
+        }
+    }
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+Enter the number of elements (up to 20): 3
+Enter 3 elements:
+1
+2
+3
+Array contents:
+1 2 3 
+
+1.to search an elemnt.
+2.to add new element in array.
+3 exit
+enter your choice: 2
+Enter value to add to the array: 1
+Value 1 added to the array.
+Array contents:
+1 2 3 1
+
+1.to search an elemnt.
+2.to add new element in array.
+3 exit
+enter your choice: 1
+Enter position to search: 2
+Element at position 2 is 3
+
+1.to search an elemnt.
+2.to add new element in array.
+3 exit
+enter your choice: 2
+Enter value to add to the array: 4
+Value 4 added to the array.
+Array contents:
+1 2 3 1 4
+
+1.to search an elemnt.
+2.to add new element in array.
+3 exit
+enter your choice: 3

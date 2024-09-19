@@ -1,0 +1,192 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9. Define a class to represent a bank account. Include the following members :
+DATA MEMBERS             MEMBER FUNCTIONS
+------------------------ ------------------------------
+Name of depositor        (1) To assign initial values
+Account Number           (2) To Deposit the amount
+Type of Account          (3) To withdraw an amount after checking the Balance amount in account 
+                         (4) To display name and balance
+Write C++ program to handle 10 customers.
+
+#include<iostream>
+using namespace std;
+class BankAccount{
+    int acc_num,balance;
+    string name,accountType;
+    
+    public:
+    BankAccount(string n = "", int accNum = 0, string accType = "", int initialBalance = 0)
+        : name(n), acc_num(accNum), accountType(accType), balance(initialBalance) {}
+
+        void deposit(int amt){
+            if(amt >0){
+                balance += amt;
+            }else{
+                cout<<"enter valid amount.";
+            }
+        }
+        void withdraw(int amt){
+            if(amt > balance){
+                cout<<"balance is too low can not withdraw";
+            }
+            else{
+                balance = balance - amt;
+            }
+        }
+        void display(){
+            cout<<"\nname\t account number\t balance\n";
+            cout<<name<<"\t"<<acc_num<<"\t\t"<<balance;
+        }
+        int getAccountNumber() const {
+            return acc_num;
+        }
+};
+int main(){
+    int i,choice,n;
+    int acc_num,balance;
+    int acc,amt;
+    string name,accountType;
+    cout<<"how many new account you want to create: ";
+    cin>>n;
+    BankAccount bankaccount[n];
+    for(i=0;i<n;i++){
+        cout<<"enter the account detail for "<<(i+1)<<" user: ";
+        cout<<"\nenter the name: ";
+        cin.ignore();
+        getline(cin,name);
+        cout<<"enter the account number: ";
+        cin>>acc_num;
+        cout<<"enter the account type(saving/current): ";
+        cin.ignore();
+        getline(cin,accountType);
+        cout<<"enter the balance: ";
+        cin>>balance;
+        bankaccount[i] =  BankAccount(name,acc_num,accountType,balance);
+    }
+    while(true){
+        cout<<"\n1. deposit the money.\n2. withdraw the money.\n3. display all data.\n4. exit\nenter your choice:";
+        cin>>choice;
+        bool found = false;
+        switch (choice)
+        {
+        case 1:
+            
+            cout<<"enter the account number: ";
+            cin>>acc;
+            cout<<"enter the amount you want to diposiste: ";
+            cin>>amt;
+            for(i=0;i<n;i++){
+                if(bankaccount[i].getAccountNumber()==acc){
+                    bankaccount[i].deposit(amt);
+                    bankaccount[i].display();
+                    found = true;
+                    break;
+                }
+            }
+            if(!found){
+                cout<<"bank account does not exist.";
+            }
+            break;
+        case 2:
+            cout<<"enter the account number: ";
+            cin>>acc;
+            cout<<"enter the amount you want to withdraw: ";
+            cin>>amt;
+            for(i=0;i<n;i++){
+                if(bankaccount[i].getAccountNumber()==acc){
+                    bankaccount[i].withdraw(amt);
+                    bankaccount[i].display();
+                    found=true;
+                    break;
+                    }
+                }
+                if(!found){
+                    cout<<"\nbank account does not exist.";
+                }
+            break;
+        case 3:
+            for(i=0;i<n;i++){
+            bankaccount[i].display();
+            }
+            break;
+        case 4:
+            exit(0);
+        default:
+            cout<<"enter valid choice";
+            break;
+        }
+    }
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+how many new account you want to create: 3
+enter the account detail for 1 user:
+enter the account number: 101
+enter the name: fenil
+enter the account type(saving/current): saving
+enter the balance: 10000
+enter the account detail for 2 user:
+enter the account number: 102
+enter the name: yash
+enter the account type(saving/current): saving
+enter the balance: 5000
+enter the account detail for 3 user:
+enter the account number: 103
+enter the name: raj
+enter the account type(saving/current): saving
+enter the balance: 7000
+
+1. deposit the money.
+2. withdraw the money.
+3. display all data.
+4. exit
+enter your choice:1
+enter the account number: 102
+enter the amount you want to deposit: 2000
+
+name     account number  balance
+yash    102             7000
+
+1. deposit the money.
+2. withdraw the money.
+3. display all data.
+4. exit
+enter your choice:2
+enter the account number: 101
+enter the amount you want to withdraw: 2500
+
+name     account number  balance
+fenil   101             7500
+
+1. deposit the money.
+2. withdraw the money.
+3. display all data.
+4. exit
+enter your choice:3
+
+name     account number  balance
+fenil   101             7500
+yash    102             7000
+raj     103             7000
+
+1. deposit the money.
+2. withdraw the money.
+3. display all data.
+4. exit
+enter your choice:1
+enter the account number: 104
+enter the amount you want to deposit: 2000
+bank account does not exist.
+1. deposit the money.
+2. withdraw the money.
+3. display all data.
+4. exit
+enter your choice:4

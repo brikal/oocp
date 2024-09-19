@@ -1,0 +1,60 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Write a program to create class Num (int n1, int n2, int n3, int n4). Display total and average of n1, n2, n3 and n4.
+
+#include <iostream>
+using namespace std;
+
+class Num {
+
+    int n1, n2, n3, n4;
+    float sum,avg;
+public:
+    Num(int a, int b, int c, int d) {
+        n1 = a;
+        n2 = b;
+        n3 = c;
+        n4 = d;
+    }
+
+    float calculate(){
+        sum= n1+n2+n3+n4;
+        avg=sum/4;
+    }
+
+    void display() {
+        cout << "Total: " << sum << endl;
+        cout << "Average: " << avg << endl;
+    }
+};
+
+int main() {
+    int num1, num2, num3, num4;
+
+    cout << "Enter numbers 1: ";
+    cin >> num1;
+    cout << "Enter numbers 2: ";
+    cin >> num2;
+    cout << "Enter numbers 3: ";
+    cin >> num3;
+    cout << "Enter numbers 4: ";
+    cin >> num4;
+    Num numObj(num1, num2, num3, num4);
+    numObj.calculate();
+    numObj.display();
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+Enter numbers 1: 12
+Enter numbers 2: 13
+Enter numbers 3: 14
+Enter numbers 4: 15
+Total: 54
+Average: 13.5

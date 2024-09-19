@@ -1,0 +1,76 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.Write a program to create class employee with employee’s id, name and basic salary. Calculate gross salary for each employee(HRA 20%, DA 30%, OA 10%).
+
+#include <iostream>
+using namespace std;
+
+class Employee {
+    int id;
+    string name;
+    float basicSalary,HRA,DA,OA,grossSalary;
+
+public:
+    Employee(int empId=0, string empName="", float salary=0,float hra=0,float da=0,float oa=0,float gross =0) {
+        id = empId;
+        name = empName;
+        basicSalary = salary;
+        HRA = 0.20 * basicSalary;
+        DA = 0.30 * basicSalary; 
+        OA = 0.10 * basicSalary; 
+        grossSalary = basicSalary + HRA + DA + OA;
+    }
+    void displayDetails() {
+        cout<<"employee id\t name\t Base salary\t HRA\t DA\t OA\t gross salary\n";
+        cout<<id<<"\t\t"<<name<<"\t"<<basicSalary<<"\t\t"<<HRA<<"\t"<<DA<<"\t"<<OA<<"\t"<<grossSalary<<"\n";
+    }
+};
+
+int main() {
+    int id,n;
+    string name;
+    float basicSalary;
+    cout <<"enter the number of employee detail you want to add: ";
+    cin>>n;
+    Employee emp[n];
+    for(int i=0;i<n;i++){
+        cout << "Enter Employee ID: ";
+        cin >> id;
+        cout << "Enter Employee Name: ";
+        cin.ignore();  
+        getline(cin, name);
+        cout << "Enter Basic Salary: ";
+        cin >> basicSalary;
+        emp[i]= Employee(id, name, basicSalary);
+    }
+    cout<<"employee detail:\n";
+    for(int i=0;i<n;i++){
+        emp[i].displayDetails();
+    }
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+enter the number of employee detail you want to add: 3
+Enter Employee ID: 101
+Enter Employee Name: fenil
+Enter Basic Salary: 2000
+Enter Employee ID: 102
+Enter Employee Name: yash
+Enter Basic Salary: 4000
+Enter Employee ID: 103
+Enter Employee Name: raj
+Enter Basic Salary: 5000
+employee detail:
+employee id      name    Base salary     HRA     DA      OA      gross salary
+101             fenil   2000            400     600     200     3200
+employee id      name    Base salary     HRA     DA      OA      gross salary
+102             yash    4000            800     1200    400     6400
+employee id      name    Base salary     HRA     DA      OA      gross salary
+103             raj     5000            1000    1500    500     8000

@@ -1,0 +1,145 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. Create class STUDENT having rollno, name and age as data members, also take subject with three subjects and initialize their value with minimum passing marks. Using member function, modify marks of student with specific rollno which is given by user.
+
+#include <iostream>
+using namespace std;
+
+class STUDENT {
+private:
+    int rollno;
+    string name;
+    int age;
+    int marks[3]; 
+
+public:
+    STUDENT(int r=0, string n="", int a=0, int minPassingMarks = 35) : rollno(r), name(n), age(a) {
+        for (int i = 0; i < 3; ++i) {
+            marks[i] = minPassingMarks;
+        }
+    }
+    void displayDetails() const {
+
+        cout << "\n"<< rollno << "\t" << name << "\t" << age << "\t";
+        for (int i = 0; i < 3; ++i) {
+            cout << marks[i] << " ";
+        }
+        //cout << endl;
+    }
+    void modifyMarks(int subjectIndex, int newMarks) {
+        if (subjectIndex >= 0 && subjectIndex < 3) {
+            marks[subjectIndex] = newMarks;
+        } else {
+            cout << "Invalid subject index. Please provide a value between 0 and 2." << endl;
+        }
+    }
+    int getRollno() const {
+        return rollno;
+    }
+};
+
+int main() {
+    int id,age,n;
+    string name;
+    cout<<"how many student detail you want to enter: ";
+    cin>>n;
+    const int NUM_STUDENTS = n;
+    STUDENT students[NUM_STUDENTS];
+    for(int i=0;i<n;i++){
+        cout<<"enter roll no of student: ";
+        cin>>id;
+        cout<<"enter name of the student: ";
+        cin.ignore();
+        getline(cin,name);
+        cout<<"enter age of student: ";
+        cin>>age;
+        students[i] = STUDENT(id,name,age);
+    }
+
+    cout << "Student Details:\n";
+    cout << "\nRoll No\tName\tAge\tMarks: ";
+    for (int i = 0; i < NUM_STUDENTS; ++i) {
+        students[i].displayDetails();
+    }
+    while(true){
+        int rollnoToModify,choice;
+        int subjectIndex, newMarks;
+        bool studentFound = false;
+        cout<<"\n1. to modify marks.\n2.exit\nenter your choice: ";
+        cin>>choice;
+        switch (choice)
+        {
+            case 1:
+                cout << "\nEnter roll number of student to modify marks: ";
+                cin >> rollnoToModify;
+                cout << "Enter subject index (0, 1, or 2) to modify: ";
+                cin >> subjectIndex;
+                cout << "Enter new marks: ";
+                cin >> newMarks;
+                for (int i = 0; i < NUM_STUDENTS; ++i) {
+                    if (students[i].getRollno() == rollnoToModify) {
+                        students[i].modifyMarks(subjectIndex, newMarks);
+                        studentFound = true;
+                        break;
+                    }
+                }
+                if (!studentFound) {
+                    cout << "Student with roll number " << rollnoToModify << " not found." << endl;
+                }
+                cout << "\nUpdated Student Details:\n";
+                cout << "\nRoll No\tName\tAge\tMarks: ";
+                for (int i = 0; i < NUM_STUDENTS; ++i) {
+                    students[i].displayDetails();
+                }
+                    break;
+            case 2:
+                exit(0);
+            default:
+                cout<<"enter valid choice.";
+                break;
+        }
+    }
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:-
+how many student detail you want to enter: 3
+enter roll no of student: 12
+enter name of the student: fenil
+enter age of student: 22
+enter roll no of student: 13
+enter name of the student: yash
+enter age of student: 21
+enter roll no of student: 14
+enter name of the student: raj
+enter age of student: 24
+Student Details:
+
+Roll No Name    Age     Marks:
+12      fenil   22      35 35 35
+13      yash    21      35 35 35
+14      raj     24      35 35 35 
+1. to modify marks.
+2.exit
+enter your choice: 1
+
+Enter roll number of student to modify marks: 12
+Enter subject index (0, 1, or 2) to modify: 2
+Enter new marks: 56
+
+Updated Student Details:
+
+Roll No Name    Age     Marks:
+12      fenil   22      35 35 56
+13      yash    21      35 35 35 
+14      raj     24      35 35 35
+1. to modify marks.
+2.exit
+enter your choice: 2

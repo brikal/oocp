@@ -1,0 +1,51 @@
+Name    :- Gohil fenil ashvinbhai
+Roll no :- 9
+course  :- MCA
+Subject :- Object Oriented Concepts and Programming
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. Demonstrate the use of static variables in a class by using it to count the number of times the value is being inputted in the program.
+
+#include<iostream>
+using namespace std;
+
+class InputCounter {
+    int value;
+    static int count; 
+
+public:
+   void inputValue() {
+        cout << "Enter a value: ";
+        cin >> value;
+        count++; 
+    }
+    static void displayCount() {
+        cout << "Number of values input: " << count << endl;
+    }
+};
+
+int InputCounter::count = 0;
+
+int main() {
+    int n;
+    cout<<"how manay number you want to input: ";
+    cin>>n;
+    InputCounter obj[n];
+    for(int i=0;i<n;i++){
+        obj[i].inputValue();
+    }
+    InputCounter::displayCount();
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+output:- 
+how manay number you want to input: 5
+Enter a value: 1
+Enter a value: 2
+Enter a value: 3
+Enter a value: 4
+Enter a value: 5
+Number of values input: 5
